@@ -1,18 +1,14 @@
 import Link from "next/link";
 import { HeaderLockup } from "@/components/header-lockup";
-import {
-  getDictionary,
-  localePath,
-  phoneHref,
-  type Locale,
-} from "@/lib/dictionary";
+import { LanguageSwitch } from "@/components/language-switch";
+import { getDictionary, localePath, phoneHref, type Locale } from "@/lib/dictionary";
+import { privacyPath } from "@/lib/site-metadata";
 
 const callClass =
   "inline-flex h-11 items-center whitespace-nowrap bg-paper px-4 text-[15px] font-medium text-ink active:translate-y-px hover:shadow-[inset_0_0_0_1px_#12181b]";
 
 export function SiteHeader({ lang }: { lang: Locale }) {
   const dict = getDictionary(lang);
-  const other: Locale = lang === "pl" ? "en" : "pl";
 
   return (
     <header className="site-header fixed inset-x-0 top-0 z-10 flex h-16 items-center justify-between gap-3 border-b border-ash-light/20 bg-ink px-5 text-paper md:h-20 md:px-10">
@@ -21,13 +17,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
       </a>
       <HeaderLockup lang={lang} />
       <div className="flex items-center gap-4 md:gap-5">
-        <Link
-          href={localePath(other)}
-          hrefLang={other}
-          className="text-sm text-ash-light underline-offset-4 hover:text-paper hover:underline"
-        >
-          {other === "en" ? "EN" : "PL"}
-        </Link>
+        <LanguageSwitch lang={lang} />
         <a className={callClass} href={phoneHref}>
           {dict.call}
         </a>
@@ -62,6 +52,14 @@ export function SiteFooter({ lang }: { lang: Locale }) {
           </p>
           <p>{dict.footerTax}</p>
           <p>REGON: 522444230</p>
+          <p>
+            <Link
+              href={localePath(lang, privacyPath)}
+              className="underline-offset-4 hover:underline"
+            >
+              {dict.privacyLink}
+            </Link>
+          </p>
           <p>© 2026 S5 Digital</p>
         </div>
       </div>

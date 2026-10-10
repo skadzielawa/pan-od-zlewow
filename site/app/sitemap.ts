@@ -3,14 +3,18 @@ import { localeUrl, locales } from "@/lib/dictionary";
 
 export const dynamic = "force-static";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const languages = {
-    pl: localeUrl("pl"),
-    en: localeUrl("en"),
-  };
+const paths = ["", "przetwarzanie-danych"];
 
-  return locales.map((lang) => ({
-    url: localeUrl(lang),
-    alternates: { languages },
-  }));
+export default function sitemap(): MetadataRoute.Sitemap {
+  return paths.flatMap((path) => {
+    const languages = {
+      pl: localeUrl("pl", path),
+      en: localeUrl("en", path),
+    };
+
+    return locales.map((lang) => ({
+      url: localeUrl(lang, path),
+      alternates: { languages },
+    }));
+  });
 }

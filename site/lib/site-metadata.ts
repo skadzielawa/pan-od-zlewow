@@ -7,26 +7,30 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export function buildMetadata(lang: Locale): Metadata {
+export const privacyPath = "przetwarzanie-danych";
+
+export function buildMetadata(lang: Locale, path = ""): Metadata {
   const dict = getDictionary(lang);
-  const url = localeUrl(lang);
+  const url = localeUrl(lang, path);
+  const title = path === privacyPath ? dict.privacyTitle : dict.metaTitle;
+  const description = path === privacyPath ? dict.privacyDescription : dict.metaDescription;
 
   return {
     metadataBase: new URL(siteUrl),
     applicationName: "Pan od zlewów",
-    title: dict.metaTitle,
-    description: dict.metaDescription,
+    title: title,
+    description: description,
     alternates: {
       canonical: url,
       languages: {
-        pl: localeUrl("pl"),
-        en: localeUrl("en"),
-        "x-default": localeUrl("pl"),
+        pl: localeUrl("pl", path),
+        en: localeUrl("en", path),
+        "x-default": localeUrl("pl", path),
       },
     },
     openGraph: {
-      title: dict.metaTitle,
-      description: dict.metaDescription,
+      title,
+      description,
       url,
       locale: lang === "pl" ? "pl_PL" : "en_GB",
       type: "website",
