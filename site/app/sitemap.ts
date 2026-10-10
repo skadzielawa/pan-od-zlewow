@@ -1,25 +1,14 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/lib/dictionary";
+import { localeUrl, locales } from "@/lib/dictionary";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: `${siteUrl}/pl`,
-      alternates: {
-        languages: {
-          pl: `${siteUrl}/pl`,
-          en: `${siteUrl}/en`,
-        },
-      },
-    },
-    {
-      url: `${siteUrl}/en`,
-      alternates: {
-        languages: {
-          pl: `${siteUrl}/pl`,
-          en: `${siteUrl}/en`,
-        },
-      },
-    },
-  ];
+  const languages = {
+    pl: localeUrl("pl"),
+    en: localeUrl("en"),
+  };
+
+  return locales.map((lang) => ({
+    url: localeUrl(lang),
+    alternates: { languages },
+  }));
 }

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Mark } from "@/components/mark";
-import type { Locale } from "@/lib/dictionary";
+import { localePath, type Locale } from "@/lib/dictionary";
 
 export function HeaderLockup({ lang }: { lang: Locale }) {
   const [open, setOpen] = useState(false);
@@ -62,7 +62,7 @@ export function HeaderLockup({ lang }: { lang: Locale }) {
   }, []);
 
   return (
-    <Link href={`/${lang}`} className="flex items-center text-paper">
+    <Link href={localePath(lang)} className="flex items-center text-paper">
       <span className={open ? "lockup-mark is-open" : "lockup-mark"}>
         <span className="lockup-mark-clip">
           <Mark

@@ -155,3 +155,17 @@ export function getDictionary(locale: Locale): Dictionary {
 export const phoneHref = "tel:+48455449109";
 
 export const siteUrl = "https://panodzlewow.pl";
+
+/** Polish is the default locale and lives at the root, without a prefix. */
+export function localePath(lang: Locale, path = ""): string {
+  const clean = path.replace(/^\/+/, "");
+  if (lang === "pl") {
+    return `/${clean}`;
+  }
+  return clean ? `/en/${clean}` : "/en";
+}
+
+export function localeUrl(lang: Locale, path = ""): string {
+  const pathname = localePath(lang, path);
+  return pathname === "/" ? siteUrl : `${siteUrl}${pathname}`;
+}

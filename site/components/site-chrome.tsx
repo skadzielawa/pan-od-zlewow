@@ -2,6 +2,7 @@ import Link from "next/link";
 import { HeaderLockup } from "@/components/header-lockup";
 import {
   getDictionary,
+  localePath,
   phoneHref,
   type Locale,
 } from "@/lib/dictionary";
@@ -11,7 +12,7 @@ const callClass =
 
 export function SiteHeader({ lang }: { lang: Locale }) {
   const dict = getDictionary(lang);
-  const other = lang === "pl" ? "en" : "pl";
+  const other: Locale = lang === "pl" ? "en" : "pl";
 
   return (
     <header className="site-header fixed inset-x-0 top-0 z-10 flex h-16 items-center justify-between gap-3 border-b border-ash-light/20 bg-ink px-5 text-paper md:h-20 md:px-10">
@@ -21,7 +22,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
       <HeaderLockup lang={lang} />
       <div className="flex items-center gap-4 md:gap-5">
         <Link
-          href={`/${other}`}
+          href={localePath(other)}
           hrefLang={other}
           className="text-sm text-ash-light underline-offset-4 hover:text-paper hover:underline"
         >

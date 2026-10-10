@@ -1,8 +1,8 @@
 import { Mark } from "@/components/mark";
 import {
   getDictionary,
+  localeUrl,
   phoneHref,
-  siteUrl,
   type Locale,
 } from "@/lib/dictionary";
 
@@ -19,7 +19,7 @@ export function HomePage({ lang }: { lang: Locale }) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Pan od zlewów",
-    url: `${siteUrl}/${lang}`,
+    url: localeUrl(lang),
     telephone: "+48455449109",
     email: "panodzlewow@gmail.com",
     vatID: "PL6751318817",
