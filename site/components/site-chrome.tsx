@@ -56,8 +56,8 @@ export function SiteFooter({ lang }: { lang: Locale }) {
           <p>Medweckiego 87</p>
           <p>32-083 Balice</p>
           <p>
-            <a className="underline-offset-4 hover:underline" href="mailto:panodzlewow@gmail.com">
-              panodzlewow@gmail.com
+            <a className="underline-offset-4 hover:underline" href="mailto:kontakt@panodzlewow.pl">
+              kontakt@panodzlewow.pl
             </a>
           </p>
           <p>{dict.footerTax}</p>

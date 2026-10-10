@@ -21,7 +21,7 @@ export function HomePage({ lang }: { lang: Locale }) {
     name: "Pan od zlewów",
     url: localeUrl(lang),
     telephone: "+48455449109",
-    email: "panodzlewow@gmail.com",
+    email: "kontakt@panodzlewow.pl",
     vatID: "PL6751318817",
     legalName: "S5 Digital Szymon Kądzielawa",
     address: {
@@ -34,7 +34,7 @@ export function HomePage({ lang }: { lang: Locale }) {
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+48455449109",
-      email: "panodzlewow@gmail.com",
+      email: "kontakt@panodzlewow.pl",
       contactType: "customer service",
       availableLanguage: ["Polish", "English"],
       hoursAvailable: {
