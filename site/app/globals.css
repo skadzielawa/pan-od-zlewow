@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #12181b;
+  --paper: #e7eeef;
+  --ash: #3d4c52;
+  --ash-light: #b7c4c8;
+  --cyan: #00b4d8;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-ash: var(--ash);
+  --color-ash-light: var(--ash-light);
+  --color-cyan: var(--cyan);
+  --font-sans: var(--font-schibsted);
+  --font-mono: var(--font-plex);
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--cyan);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.hero :focus-visible,
+.site-header :focus-visible {
+  outline-color: var(--paper);
+}
+
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -48px;
+  z-index: 30;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 8px 12px;
+}
+
+.skip:focus {
+  top: 12px;
+}
+
+.mark-draw path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.25s cubic-bezier(0.45, 0, 0.2, 1) forwards;
+}
+
+.mark-draw path:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.mark-draw path:nth-child(2) {
+  animation-delay: 0.32s;
+}
+
+.mark-draw path:nth-child(3) {
+  animation-delay: 0.62s;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.lockup-mark {
+  display: block;
+  max-width: 0;
+  margin-right: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition:
+    max-width 0.45s cubic-bezier(0.45, 0, 0.2, 1),
+    margin-right 0.45s cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.lockup-mark.is-open {
+  max-width: 6rem;
+  margin-right: 0.5rem;
+}
+
+.lockup-mark-clip {
+  display: block;
+}
+
+.lockup-mark svg {
+  display: block;
+  max-width: none;
+}
+
+svg.header-mark .mark-draw path {
+  animation-duration: 0.7s;
+}
+
+svg.header-mark .mark-draw path:nth-child(1) {
+  animation-delay: 0.16s;
+}
+
+svg.header-mark .mark-draw path:nth-child(2) {
+  animation-delay: 0.34s;
+}
+
+svg.header-mark .mark-draw path:nth-child(3) {
+  animation-delay: 0.52s;
+}
+
+@media (min-width: 768px) {
+  .lockup-mark.is-open {
+    margin-right: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark-draw path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .lockup-mark {
+    transition: none;
+  }
+}

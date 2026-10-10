@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pan od zlewów. Księga znaku</title>
+  <meta name="description" content="Księga znaku Pan od zlewów. Udrażnianie zlewozmywaków, umywalek i odpływów pralek w Krakowie i okolicy.">
+  <link rel="icon" href="../logo.svg" type="image/svg+xml">
+  <style>
+    /* Brand book for Pan od zlewów.
+       Variance 6, motion 4, density 3.
+       Cool paper, ink, and the logo cyan. Cyan is the mark only.
+       Schibsted Grotesk speaks. IBM Plex Mono counts.
+       Corner radius stays 0. The circle in the misuse row is the forbidden example.
+       Motion: the cover mark draws once, because the logo is a single line. */
+
+    @font-face {
+      font-family: "Schibsted Grotesk";
+      src: url("fonts/schibsted-grotesk-latin-ext.woff2") format("woff2");
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: "Schibsted Grotesk";
+      src: url("fonts/schibsted-grotesk-latin.woff2") format("woff2");
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("fonts/ibm-plex-mono-latin-ext.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("fonts/ibm-plex-mono-latin.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    :root {
+      --ink: #12181b;
+      --paper: #e7eeef;
+      --ash: #3d4c52;
+      --ash-light: #b7c4c8;
+      --cyan: #00b4d8;
+      --sans: "Schibsted Grotesk", "Avenir Next", "Segoe UI", sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --nav: 64px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-padding-top: 80px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding-top: var(--nav);
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.5;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .sprite {
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+
+    .skip {
+      position: absolute;
+      left: 12px;
+      top: -48px;
+      z-index: 20;
+      background: var(--paper);
+      color: var(--ink);
+      padding: 8px 12px;
+    }
+
+    .skip:focus {
+      top: 12px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+
+    .cover-bleed :focus-visible {
+      outline-color: var(--paper);
+    }
+
+    ::selection {
+      background: var(--cyan);
+      color: var(--ink);
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 5;
+      height: var(--nav);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 0 28px;
+      background: var(--paper);
+    }
+
+    .nav-name {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      min-width: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .cover-bleed {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .cover {
+      min-height: calc(100dvh - var(--nav));
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 340px);
+      align-items: center;
+      column-gap: clamp(28px, 4vw, 64px);
+      padding: 28px 40px 36px;
+    }
+
+    .cover-mark {
+      display: block;
+      width: min(100%, calc((100dvh - var(--nav) - 88px) * 640 / 600));
+      height: auto;
+      align-self: center;
+      justify-self: start;
+      color: var(--cyan);
+    }
+
+    .cover-mark path {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: draw 1.25s cubic-bezier(0.45, 0, 0.2, 1) forwards;
+    }
+
+    .cover-mark path:nth-child(1) { animation-delay: 0.08s; }
+    .cover-mark path:nth-child(2) { animation-delay: 0.32s; }
+    .cover-mark path:nth-child(3) { animation-delay: 0.62s; }
+
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .cover h1 {
+      margin: 0 0 18px;
+      font-size: clamp(44px, 4.4vw, 64px);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 0.94;
+    }
+
+    .cover p {
+      margin: 0 0 28px;
+      max-width: 24ch;
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      padding: 0 16px;
+      background: var(--paper);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      border-radius: 0;
+      white-space: nowrap;
+    }
+
+    .button:hover {
+      box-shadow: inset 0 0 0 1px var(--ink);
+    }
+
+    .button:active {
+      transform: translateY(1px);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 80px));
+      margin-inline: auto;
+    }
+
+    .sheet {
+      padding: 112px 0;
+    }
+
+    h2 {
+      margin: 0;
+      max-width: 16ch;
+      font-size: clamp(36px, 4.4vw, 60px);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      text-wrap: balance;
+    }
+
+    h3 {
+      margin: 80px 0 0;
+      max-width: 16ch;
+      font-size: clamp(32px, 3.6vw, 48px);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+    }
+
+    .lead {
+      max-width: 38rem;
+      margin: 28px 0 0;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .mono {
+      font-family: var(--mono);
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .is-ink { color: var(--ink); }
+    .is-cyan { color: var(--cyan); }
+    .is-paper { color: var(--paper); }
+
+    #marka h2 {
+      max-width: 18ch;
+    }
+
+    .range {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.7fr);
+      gap: 40px 64px;
+      align-items: start;
+      margin-top: 40px;
+    }
+
+    .range ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .range li {
+      font-size: clamp(42px, 5.2vw, 76px);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 1.12;
+    }
+
+    .out {
+      margin: 0;
+      max-width: 28ch;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .mark-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+      gap: 40px 56px;
+      align-items: center;
+      margin-top: 48px;
+    }
+
+    .big-mark {
+      display: block;
+      width: min(100%, 460px);
+      height: auto;
+    }
+
+    .mark-notes p {
+      margin: 0;
+      max-width: 36ch;
+    }
+
+    .mark-notes p + p {
+      margin-top: 16px;
+    }
+
+    .min-size {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .min-size span {
+      max-width: 28ch;
+    }
+
+    .versions {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 56px;
+    }
+
+    .version {
+      margin: 0;
+    }
+
+    .version-plate {
+      min-height: 230px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .version-paper {
+      border: 1px solid var(--ash);
+    }
+
+    .version-ink {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .lockup {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      color: var(--ash);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .rule-line {
+      max-width: 40rem;
+      margin: 20px 0 0;
+    }
+
+    .bads {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .bad {
+      margin: 0;
+    }
+
+    .bad-frame {
+      position: relative;
+      height: 168px;
+      border: 1px solid var(--ash);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .bad-stretch svg {
+      transform: scaleX(1.6);
+    }
+
+    .bad-shadow svg {
+      filter: drop-shadow(6px 6px 0 var(--ash));
+    }
+
+    .badge-ring {
+      position: absolute;
+      width: 132px;
+      height: 132px;
+    }
+
+    .crime {
+      margin: 6px 0 0;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      line-height: 1.25;
+    }
+
+    .palette {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .side {
+      display: grid;
+      gap: 12px;
+    }
+
+    .swatch {
+      min-height: 200px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .swatch-cyan {
+      min-height: 428px;
+      background: var(--cyan);
+      color: var(--ink);
+    }
+
+    .swatch-ink {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .swatch-paper {
+      border: 1px solid var(--ash);
+    }
+
+    .swatch-name {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .swatch-hex {
+      margin: 8px 0 0;
+      font-family: var(--mono);
+      font-size: 14px;
+    }
+
+    .swatch-note {
+      margin: 16px 0 0;
+      max-width: 28ch;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .swatch-ink .swatch-hex,
+    .cover-where {
+      color: var(--ash-light);
+    }
+
+    .ash-note {
+      margin: 20px 0 0;
+      max-width: 46ch;
+      color: var(--ash);
+    }
+
+    .type-name {
+      margin: 40px 0 0;
+      font-size: clamp(40px, 6vw, 76px);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+    }
+
+    .type-sentence {
+      margin: 12px 0 0;
+      max-width: 22ch;
+      font-size: clamp(22px, 2.4vw, 32px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+    }
+
+    .mono-sample {
+      list-style: none;
+      margin: 36px 0 0;
+      padding: 0;
+      font-family: var(--mono);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .alphabet {
+      margin: 28px 0 0;
+      max-width: 46ch;
+      font-size: 20px;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+    }
+
+    .voice-lead {
+      max-width: 36rem;
+    }
+
+    .lines {
+      list-style: none;
+      margin: 36px 0 0;
+      padding: 0;
+      max-width: 28em;
+    }
+
+    .lines li {
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+
+    .lines li + li {
+      margin-top: 18px;
+    }
+
+    .banned {
+      max-width: 40rem;
+      margin: 48px 0 0;
+      color: var(--ash);
+    }
+
+    .price {
+      display: flex;
+      align-items: baseline;
+      gap: 12px 20px;
+      flex-wrap: wrap;
+      max-width: none;
+      margin: 0;
+      line-height: 0.9;
+    }
+
+    .price-num {
+      font-size: clamp(104px, 16vw, 220px);
+      font-weight: 500;
+      letter-spacing: -0.055em;
+      line-height: 1;
+    }
+
+    .price-unit {
+      font-family: var(--mono);
+      font-size: clamp(16px, 2vw, 24px);
+      letter-spacing: 0;
+      line-height: 1.2;
+    }
+
+    .terms {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px 64px;
+      margin: 48px 0 0;
+    }
+
+    .terms div {
+      max-width: 36ch;
+    }
+
+    .terms dt {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    .terms dd {
+      margin: 8px 0 0;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .price-note {
+      max-width: 42rem;
+      margin: 36px 0 0;
+    }
+
+    .uses {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 36px 48px;
+      margin-top: 40px;
+      align-items: start;
+    }
+
+    .use {
+      margin: 0;
+    }
+
+    .use-stack {
+      display: grid;
+      gap: 36px;
+    }
+
+    .card {
+      aspect-ratio: 1.586 / 1;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card p {
+      margin: 12px 0 0;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+
+    .card .where {
+      color: var(--ash-light);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .message {
+      margin: 0;
+      max-width: 28ch;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+    }
+
+    .invoice {
+      padding-top: 4px;
+    }
+
+    .invoice-name {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+    }
+
+    .invoice-kind {
+      margin: 4px 0 0;
+      color: var(--ash);
+      font-size: 15px;
+    }
+
+    .invoice-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 12px;
+      border-top: 1px solid var(--ash);
+      font-size: 16px;
+    }
+
+    .invoice-line span:last-child {
+      font-family: var(--mono);
+      white-space: nowrap;
+    }
+
+    .colophon {
+      padding: 28px 0 72px;
+      border-top: 1px solid var(--ash);
+    }
+
+    .colophon p {
+      max-width: 42rem;
+      margin: 0 0 12px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .colophon .legal {
+      margin-top: 28px;
+      color: var(--ash);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .cover {
+        grid-template-columns: 1fr;
+        align-content: start;
+        align-items: start;
+        row-gap: 36px;
+        padding: 28px 20px 32px;
+      }
+
+      .cover-mark {
+        height: auto;
+        width: min(320px, 78vw);
+      }
+
+      .versions,
+      .bads,
+      .palette,
+      .uses,
+      .terms,
+      .mark-stage,
+      .range {
+        grid-template-columns: 1fr;
+      }
+
+      .swatch-cyan {
+        min-height: 280px;
+      }
+
+      .bads {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 8px;
+      }
+
+      .bad {
+        flex: 0 0 72%;
+        scroll-snap-align: start;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        padding: 0 12px;
+        gap: 10px;
+      }
+
+      .nav-name {
+        font-size: 14px;
+      }
+
+      .nav-links {
+        gap: 10px;
+      }
+
+      .nav-links a {
+        font-size: 13px;
+      }
+
+      .wrap {
+        width: calc(100% - 40px);
+      }
+
+      .sheet {
+        padding: 72px 0;
+      }
+
+      .lockup {
+        font-size: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      .cover-mark path {
+        animation: none;
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @media print {
+      body { padding-top: 0; }
+
+      .nav,
+      .skip,
+      .button {
+        display: none;
+      }
+
+      .cover {
+        min-height: auto;
+        padding: 24px;
+      }
+
+      .cover-mark {
+        height: 280px;
+      }
+
+      .cover-mark path {
+        animation: none;
+        stroke-dashoffset: 0;
+      }
+
+      .sheet {
+        padding: 32px 0;
+        page-break-inside: avoid;
+      }
+
+      .cover-bleed,
+      .swatch-cyan,
+      .swatch-ink,
+      .version-ink,
+      .card {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#marka">Przejdź do treści</a>
+
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 640 600">
+      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32">
+        <path d="M306 164V72c0-20 16-36 36-36h44m-80 66h80"/>
+        <path d="M104 180v36c0 62 50 112 112 112h184c38 0 68 31 68 70 0 42-33 74-74 74h-16v23c0 31-22 53-52 53s-52-22-52-53V386"/>
+        <path d="M72 180h496"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <header class="nav">
+    <a class="nav-name" href="#okladka">Pan od zlewów</a>
+    <nav class="nav-links" aria-label="Spis księgi">
+      <a href="#marka">Marka</a>
+      <a href="#zakres">Zakres</a>
+      <a href="#znak">Znak</a>
+      <a href="#kolor">Kolor</a>
+      <a href="#glos">Głos</a>
+      <a href="#cena">Cena</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="cover-bleed" id="okladka">
+      <div class="cover">
+        <svg class="cover-mark" viewBox="0 0 640 600" role="img" aria-label="Znak Pan od zlewów">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32">
+            <path pathLength="1" d="M306 164V72c0-20 16-36 36-36h44m-80 66h80"/>
+            <path pathLength="1" d="M104 180v36c0 62 50 112 112 112h184c38 0 68 31 68 70 0 42-33 74-74 74h-16v23c0 31-22 53-52 53s-52-22-52-53V386"/>
+            <path pathLength="1" d="M72 180h496"/>
+          </g>
+        </svg>
+        <div class="cover-copy">
+          <h1>Pan od<br>zlewów</h1>
+          <p>Tylko odpływy, które nie są toaletą.</p>
+          <a class="button" href="#marka">Czytaj księgę</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="sheet" id="marka">
+      <div class="wrap">
+        <h2>Zlewy, umywalki i&nbsp;pralki. Nic poza tym.</h2>
+        <p class="lead">Udrażniam odpływy w&nbsp;Krakowie, Wieliczce i&nbsp;Skawinie. Cena jest ustalona, zanim wyjdę z&nbsp;domu. Termin, który podam, trzymam. Wieczór jest bez dopłaty, faktura VAT także.</p>
+      </div>
+    </section>
+
+    <section class="sheet" id="zakres">
+      <div class="wrap">
+        <h2>Robię tylko to</h2>
+        <div class="range">
+          <ul>
+            <li>Zlew</li>
+            <li>Umywalka</li>
+            <li>Odpływ pralki</li>
+          </ul>
+          <p class="out">Nie robię toalet ani reszty hydrauliki. Baterie, spłuczki, grzejniki, nowe rury. Od tego są inni.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet" id="znak">
+      <div class="wrap">
+        <h2>Znak jest schematem</h2>
+        <p class="lead">Kran, krawędź zlewu i&nbsp;syfon. Jedna grubość kreski, okrągłe końce, pusty środek.</p>
+
+        <div class="mark-stage">
+          <svg class="big-mark is-ink" viewBox="0 0 640 600" aria-hidden="true">
+            <use href="#mark"/>
+          </svg>
+          <div class="mark-notes">
+            <p>Plik <span class="mono">logo.svg</span> ma własne pole ochronne. Nie kadruje się go i&nbsp;nie wstawia niczego w&nbsp;margines kadru.</p>
+            <p class="min-size">
+              <svg viewBox="0 0 640 600" width="68" height="64" aria-hidden="true">
+                <use href="#mark"/>
+              </svg>
+              <span>Najmniejszy kadr: 64&nbsp;px na ekranie, 20&nbsp;mm w&nbsp;druku.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="versions">
+          <figure class="version">
+            <div class="version-plate version-paper">
+              <div class="lockup">
+                <svg viewBox="0 0 640 600" width="78" height="73" aria-hidden="true">
+                  <use href="#mark"/>
+                </svg>
+                <span>Pan od zlewów</span>
+              </div>
+            </div>
+            <figcaption>Zestaw z&nbsp;nazwą. Nazwa pismem, nie rysunkiem. Bez wersalików.</figcaption>
+          </figure>
+          <figure class="version">
+            <div class="version-plate version-ink">
+              <svg class="is-cyan" viewBox="0 0 640 600" width="120" height="112" aria-hidden="true">
+                <use href="#mark"/>
+              </svg>
+            </div>
+            <figcaption>Wersja pełna. Cyan na atramencie.</figcaption>
+          </figure>
+          <figure class="version">
+            <div class="version-plate version-ink">
+              <svg class="is-paper" viewBox="0 0 640 600" width="120" height="112" aria-hidden="true">
+                <use href="#mark"/>
+              </svg>
+            </div>
+            <figcaption>Gdy cyan się nie da nadrukować. Papier na atramencie.</figcaption>
+          </figure>
+        </div>
+
+        <h3>Znaku się nie poprawia</h3>
+        <p class="rule-line">Kreska zostaje równa i&nbsp;w&nbsp;kolorze z&nbsp;księgi. Bez ozdób i&nbsp;bez zawodu dopisanego pod spodem.</p>
+
+        <div class="bads">
+          <figure class="bad">
+            <div class="bad-frame bad-stretch">
+              <svg viewBox="0 0 640 600" width="110" height="103" aria-hidden="true">
+                <use href="#mark"/>
+              </svg>
+            </div>
+            <figcaption>Rozciągnięty</figcaption>
+          </figure>
+          <figure class="bad">
+            <div class="bad-frame">
+              <svg class="badge-ring" viewBox="0 0 160 160" aria-hidden="true">
+                <circle cx="80" cy="80" r="74" fill="none" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <svg viewBox="0 0 640 600" width="78" height="73" aria-hidden="true">
+                <use href="#mark"/>
+              </svg>
+            </div>
+            <figcaption>W&nbsp;kółku</figcaption>
+          </figure>
+          <figure class="bad">
+            <div class="bad-frame">
+              <svg viewBox="0 0 640 600" width="110" height="103" aria-hidden="true">
+                <defs>
+                  <linearGradient id="bad-gradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#00b4d8"/>
+                    <stop offset="100%" stop-color="#12181b"/>
+                  </linearGradient>
+                </defs>
+                <g fill="none" stroke="url(#bad-gradient)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32">
+                  <path d="M306 164V72c0-20 16-36 36-36h44m-80 66h80"/>
+                  <path d="M104 180v36c0 62 50 112 112 112h184c38 0 68 31 68 70 0 42-33 74-74 74h-16v23c0 31-22 53-52 53s-52-22-52-53V386"/>
+                  <path d="M72 180h496"/>
+                </g>
+              </svg>
+            </div>
+            <figcaption>Z&nbsp;gradientem</figcaption>
+          </figure>
+          <figure class="bad">
+            <div class="bad-frame bad-shadow">
+              <svg viewBox="0 0 640 600" width="100" height="94" aria-hidden="true">
+                <use href="#mark"/>
+              </svg>
+            </div>
+            <figcaption>Z&nbsp;cieniem</figcaption>
+          </figure>
+          <figure class="bad">
+            <div class="bad-frame">
+              <div>
+                <svg viewBox="0 0 640 600" width="72" height="68" aria-hidden="true">
+                  <use href="#mark"/>
+                </svg>
+                <p class="crime">Hydraulik<br>24h</p>
+              </div>
+            </div>
+            <figcaption>Z&nbsp;dopiskiem</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet" id="kolor">
+      <div class="wrap">
+        <h2>Cyan zostaje na znaku</h2>
+        <p class="lead">Na papierze ta kreska ma kontrast 2,1:1 i&nbsp;znika. Na atramencie ma 7,3:1. Dlatego cyan nie niesie zdań, cen ani przycisków.</p>
+
+        <div class="palette">
+          <div class="swatch swatch-cyan">
+            <p class="swatch-name">Cyan</p>
+            <div>
+              <p class="swatch-hex">#00B4D8</p>
+              <p class="swatch-note">Wyłącznie kreska wersji pełnej, na atramencie. Nie tło strony i&nbsp;nie kolor tekstu.</p>
+            </div>
+          </div>
+          <div class="side">
+            <div class="swatch swatch-ink">
+              <svg class="is-cyan" viewBox="0 0 640 600" width="84" height="79" aria-hidden="true">
+                <use href="#mark"/>
+              </svg>
+              <div>
+                <p class="swatch-name">Atrament</p>
+                <p class="swatch-hex">#12181B</p>
+              </div>
+            </div>
+            <div class="swatch swatch-paper">
+              <p class="swatch-name">Papier</p>
+              <p class="swatch-hex">#E7EEEF</p>
+            </div>
+          </div>
+        </div>
+        <p class="ash-note">Popiół #3D4C52 jest kolorem podpisu. Nie jest kolorem marki.</p>
+      </div>
+    </section>
+
+    <section class="sheet" id="pismo">
+      <div class="wrap">
+        <h2>Jedno pismo mówi. Drugie liczy.</h2>
+        <p class="lead">Schibsted Grotesk niesie nazwę i&nbsp;zdania do klienta. IBM Plex Mono niesie dopisek: kod koloru, milimetry, kwotę na fakturze. Nazwy nie składamy wersalikami.</p>
+        <p class="type-name">Pan od zlewów</p>
+        <p class="type-sentence">Przyjadę wtedy, kiedy powiedziałem.</p>
+        <ul class="mono-sample">
+          <li>#00B4D8</li>
+          <li>64 px</li>
+          <li>20 mm</li>
+          <li>299,00 zł</li>
+        </ul>
+        <p class="alphabet">a ą b c ć d e ę f g h i j k l ł m n ń o ó p r s ś t u w y z ź ż</p>
+      </div>
+    </section>
+
+    <section class="sheet" id="glos">
+      <div class="wrap">
+        <h2>Mówię wprost</h2>
+        <p class="lead voice-lead">Jedno zdanie, jedna rzecz. Cena w&nbsp;tekście jest ceną z&nbsp;tej księgi. Żart nie siedzi w&nbsp;tym samym zdaniu co kwota.</p>
+        <ul class="lines">
+          <li>Zlew. 299&nbsp;zł brutto. Mogę być wieczorem.</li>
+          <li>Jak nie udrożnię, zostaje 50&nbsp;zł brutto za dojazd.</li>
+          <li>Toalet nie ruszam.</li>
+          <li>Jak się spóźnię, dzwonię, zanim wyjdę.</li>
+        </ul>
+        <p class="banned">Tego nie piszemy: „hydraulik”, „kompleksowe usługi”, „ekipa specjalistów”, „ekspresowo”, „twój zlew zasługuje na fachowca”.</p>
+      </div>
+    </section>
+
+    <section class="sheet" id="cena">
+      <div class="wrap">
+        <h2 class="price">
+          <span class="price-num">299</span>
+          <span class="price-unit">zł brutto</span>
+        </h2>
+        <p class="lead">Zlew albo umywalka. Głęboki zator i&nbsp;niedrożny syfon kosztują tyle samo.</p>
+        <dl class="terms">
+          <div>
+            <dt>Dojazd</dt>
+            <dd>W&nbsp;Krakowie, przy udanej usłudze, w&nbsp;cenie. Poza miastem, także w&nbsp;Wieliczce i&nbsp;Skawinie, kwotę ustalam w&nbsp;rozmowie.</dd>
+          </div>
+          <div>
+            <dt>Zostaje zator</dt>
+            <dd>50&nbsp;zł brutto za dojazd. Kwoty 299&nbsp;zł wtedy nie ma.</dd>
+          </div>
+          <div>
+            <dt>Wieczór</dt>
+            <dd>Bez dopłaty. Zwyczajna godzina, nie osobna usługa.</dd>
+          </div>
+          <div>
+            <dt>Faktura</dt>
+            <dd>Zawsze VAT. Legalnie, od pierwszej wizyty.</dd>
+          </div>
+        </dl>
+        <p class="price-note">Odpływ pralki jest w&nbsp;zakresie. Cenę podaję z&nbsp;góry i&nbsp;nie zmieniam jej na miejscu. W&nbsp;księdze nie stoi liczba, bo nie jest jeszcze ogłoszona.</p>
+      </div>
+    </section>
+
+    <section class="sheet" id="uzycie">
+      <div class="wrap">
+        <h2>Wizytówka, wiadomość, faktura</h2>
+        <div class="uses">
+          <figure class="use">
+            <div class="card">
+              <svg class="is-cyan" viewBox="0 0 640 600" width="86" height="81" aria-hidden="true">
+                <use href="#mark"/>
+              </svg>
+              <p>Pan od zlewów<br><span class="where">Kraków i&nbsp;okolica</span></p>
+            </div>
+            <figcaption>Wizytówka. Bez telefonu, dopóki numer nie jest stały.</figcaption>
+          </figure>
+          <div class="use-stack">
+            <figure class="use">
+              <p class="message">Dzień dobry, tu Pan od zlewów. Mogę być jutro wieczorem. Zlew, 299&nbsp;zł brutto. Jak nie dam rady przyjechać, zadzwonię wcześniej.</p>
+              <figcaption>Wiadomość</figcaption>
+            </figure>
+            <figure class="use">
+              <div class="invoice">
+                <p class="invoice-name">Pan od zlewów</p>
+                <p class="invoice-kind">Faktura VAT</p>
+                <div class="invoice-line">
+                  <span>Udrożnienie zlewu</span>
+                  <span>299,00 zł</span>
+                </div>
+              </div>
+              <figcaption>Nagłówek faktury. NIP dopisujemy, kiedy jest.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="colophon">
+    <div class="wrap">
+      <p>Telefonu, NIP-u i&nbsp;adresu strony tu nie ma. Pojawią się, kiedy będą pewne.</p>
+      <p>Strona pokazuje 299&nbsp;zł na pierwszym ekranie, zakres wyżej niż telefon i&nbsp;sam znak, bez zdjęcia osoby. Wieczór to brak dopłaty, nie promocja.</p>
+      <p class="legal">Spisane w&nbsp;październiku 2026 w&nbsp;Krakowie. Schibsted Grotesk i&nbsp;IBM Plex Mono, SIL Open Font License.</p>
+    </div>
+  </footer>
+</body>
+</html>
