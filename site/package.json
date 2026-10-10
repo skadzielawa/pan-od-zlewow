@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "preview": "npx --yes serve out",
+    "deploy": "npm run build && wrangler pages deploy out --project-name pan-od-zlewow --commit-dirty=true",
     "lint": "eslint"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.0",
+    "wrangler": "^4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
