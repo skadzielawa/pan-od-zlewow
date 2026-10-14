@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720" role="img" aria-labelledby="title">
+  <title id="title">Pan od zlew&#243;w</title>
+  <rect width="720" height="720" fill="#12181b"/>
+  <g
+    transform="translate(120 135) scale(.75)"
+    fill="none"
+    stroke="#00b4d8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="32"
+  >
+    <path d="M306 164V72c0-20 16-36 36-36h44m-80 66h80"/>
+    <path d="M104 180v36c0 62 50 112 112 112h184c38 0 68 31 68 70 0 42-33 74-74 74h-16v23c0 31-22 53-52 53s-52-22-52-53V386"/>
+    <path d="M72 180h496"/>
+  </g>
+</svg>
